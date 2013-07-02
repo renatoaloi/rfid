@@ -45,10 +45,12 @@ void loop()
     if (rfid.isCard()) {
         if (rfid.readCardSerial()) {
             if (rfid.serNum[0] != serNum0
-                && rfid.serNum[1] != serNum1
-                && rfid.serNum[2] != serNum2
-                && rfid.serNum[3] != serNum3
-                && rfid.serNum[4] != serNum4
+                || rfid.serNum[1] != serNum1
+                || rfid.serNum[2] != serNum2
+                || rfid.serNum[3] != serNum3
+                || rfid.serNum[4] != serNum4 /* changing && to || avoiding
+                			        skipping new id when only
+                			        one byte is same than previous id */
             ) {
                 /* With a new cardnumber, show it. */
                 Serial.println(" ");
